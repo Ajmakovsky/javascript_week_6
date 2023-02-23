@@ -22,23 +22,17 @@ describe("Thermostat", () => {
   });
 
   it("Increases the thermometer temp 6 times - max is 25", () => {
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
+    for (let i = 0 ; i < 6 ; i++) {
+      thermostat.upTemp();
+    }
     expect(thermostat.getTemperature()).toBe(25);
   });
 
   it("turns off powersaving mode", () => {
     thermostat.PowerSaving(false);
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
+    for (let i = 0 ; i < 6 ; i++) {
+      thermostat.upTemp();
+    }
     expect(thermostat.getTemperature()).toBe(26);
   });
 
@@ -50,9 +44,9 @@ describe("Thermostat", () => {
   });
 
   it('returns "low energy usage" when the temp is 17', () => {
-    thermostat.downTemp();
-    thermostat.downTemp();
-    thermostat.downTemp();
+    for (let i = 0 ; i < 3 ; i++) {
+      thermostat.downTemp();
+    }
     expect(thermostat.CurrentEnergyUsage()).toBe("Low-usage");
   });
 
@@ -63,13 +57,9 @@ describe("Thermostat", () => {
   it('returns "high energy usage" when the temp is 26', () => {
     thermostat.PowerSaving(false);
 
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-    thermostat.upTemp();
-
+    for (let i = 0 ; i < 6 ; i++) {
+      thermostat.upTemp();
+    }
     expect(thermostat.CurrentEnergyUsage()).toBe("High-usage");
   });
 
